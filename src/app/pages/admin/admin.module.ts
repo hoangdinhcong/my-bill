@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -37,6 +37,10 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzFormModule,
     NzInputModule,
     NzCheckboxModule,
+  ],
+  providers: [
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'VND' },
+    // { provide: LOCALE_ID, useValue: 'vi-VN' }
   ]
 })
 export class AdminModule { }
