@@ -1,1 +1,30 @@
-<p>bill works!</p>
+<div class="flex justify-end mb-3">
+    <button nz-button nzType="primary" (click)="addBill()"><i nz-icon nzType="plus" nzTheme="outline"></i>
+        Add new
+    </button>
+</div>
+
+<nz-table #table [nzData]="billList">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of table.data">
+            <td>{{ data.id }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.type }}</td>
+            <td>{{ data.total | currency }}</td>
+            <td>
+                <a nz-button nzType="link" (click)="editBill(data)">Edit</a>
+                <a nz-button nzType="link" nzDanger nz-popconfirm
+                    nzPopconfirmTitle="Are you sure remove {{ data.name }}?" (nzOnConfirm)="removeBill(data)">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
