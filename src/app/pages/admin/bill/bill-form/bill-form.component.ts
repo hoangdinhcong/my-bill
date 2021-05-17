@@ -7,6 +7,7 @@ import { NzModalRef } from 'ng-zorro-antd/modal';
 import { Bill } from 'src/app/models/bill';
 import { BillType } from 'src/app/models/bill-type.enum';
 import { Roommate } from 'src/app/models/roommate';
+import { ViewModel } from 'src/app/models/view-model';
 import { BillService } from 'src/app/services/bill.service';
 import { RoommateService } from 'src/app/services/roommate.service';
 
@@ -27,7 +28,7 @@ export class BillFormComponent implements OnInit {
   formatterCurrency = (value: number) => `${value} đ`;
   parserCurrency = (value: string) => value.replace(' đ', '');
 
-  @Input() data: Bill = {
+  @Input() data: ViewModel<Bill> = {
     id: '',
     name: '',
     createdDate: new Date(),
@@ -81,7 +82,6 @@ export class BillFormComponent implements OnInit {
   submit(): void {
 
     const newData: Bill = {
-      id: this.data?.id,
       name: this.billForm.get('name').value,
       createdDate: this.billForm.get('createdDate').value,
       involvedRoommate: this.billForm.get('involvedRoommate').value,
@@ -91,8 +91,8 @@ export class BillFormComponent implements OnInit {
       type: this.billForm.get('type').value,
     };
 
-    if (newData.id) {
-      this.billService.update(newData).pipe(untilDestroyed(this)).subscribe(() => this.destroyModal());
+    if (this.data.id) {
+      this.billService.update(newData, this.data.id).pipe(untilDestroyed(this)).subscribe(() => this.destroyModal());
     } else {
       this.billService.create(newData).pipe(untilDestroyed(this)).subscribe(() => this.destroyModal());
     }

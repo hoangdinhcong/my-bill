@@ -5,6 +5,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Bill } from 'src/app/models/bill';
 import { BillFormComponent } from './bill-form/bill-form.component';
+import { ViewModel } from '../../../models/view-model';
 
 @UntilDestroy()
 @Component({
@@ -14,7 +15,7 @@ import { BillFormComponent } from './bill-form/bill-form.component';
 })
 export class BillComponent implements OnInit {
 
-  billList: Bill[];
+  billList: ViewModel<Bill>[];
 
   constructor(private billService: BillService, private message: NzMessageService, private modalService: NzModalService) { }
 
@@ -25,13 +26,13 @@ export class BillComponent implements OnInit {
     });
   }
 
-  removeBill(bill: Bill): void {
-    this.billService.delete(bill).pipe(untilDestroyed(this)).subscribe(() => {
+  removeBill(bill: ViewModel<Bill>): void {
+    this.billService.delete(bill.id).pipe(untilDestroyed(this)).subscribe(() => {
       this.message.success(`Remove ${bill.name} success`);
     });
   }
 
-  editBill(bill: Bill): void {
+  editBill(bill: ViewModel<Bill>): void {
     this.modalService.create({
       nzTitle: 'Edit Bill',
       nzContent: BillFormComponent,

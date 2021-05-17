@@ -1,0 +1,1 @@
+export type ViewModel<T> = { id: string } & T;

@@ -11,9 +11,9 @@ export class LoginComponent implements OnInit {
 
   constructor(public authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     if (this.authService.isLoggedIn) {
-      this.router.navigate(['admin']);
+      await this.router.navigate(['admin']);
     }
   }
 
