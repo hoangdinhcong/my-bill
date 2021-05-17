@@ -1,5 +1,5 @@
 export enum BillType {
-    Electric,
+    Electric = 1,
     Water,
     Rental,
     Internet,

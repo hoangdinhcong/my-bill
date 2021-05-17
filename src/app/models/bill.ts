@@ -2,7 +2,7 @@ import { BillType } from "./bill-type.enum";
 
 export interface Bill {
     id: string;
-    createdDate: any;
+    createdDate: Date;
     involvedRoommate: string[];
     isPaid: boolean;
     name: string;

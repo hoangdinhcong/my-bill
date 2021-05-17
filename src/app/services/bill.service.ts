@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore';
 import { Observable, from } from 'rxjs';
@@ -28,7 +32,8 @@ export class BillService {
           return res.map(e => {
             return {
               id: e.payload.doc.id,
-              ...e.payload.doc.data()
+              ...e.payload.doc.data(),
+              involvedRoommate: e.payload.doc.get('involvedRoommate')?.map(e => e.id),
             } as Bill;
           })
         }));

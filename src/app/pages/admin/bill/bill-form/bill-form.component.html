@@ -1,9 +1,55 @@
 <form nz-form [formGroup]="billForm" id="billForm" (ngSubmit)="submit()" novalidate>
 
     <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type">Type</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input type">
+            <nz-select formControlName="type" id="type">
+                <nz-option *ngFor="let option of availableBillType" [nzLabel]="option.label" [nzValue]="option.value">
+                </nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Name</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Name">
             <input nz-input formControlName="name" id="name" />
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="total">Total</nz-form-label>
+        <nz-form-control>
+            <nz-input-number class="w-full sm:w-9/12" formControlName="total" id="total" [nzMin]="0" [nzStep]="1000"
+                [nzFormatter]="formatterCurrency" [nzParser]="parserCurrency"></nz-input-number>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="involvedRoommate">Involve Roommates</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Select at least one">
+            <nz-select formControlName="involvedRoommate" id="involvedRoommate" nzMode="tags"
+                nzPlaceHolder="Please select">
+                <nz-option *ngFor="let option of availableRoommate" [nzLabel]="option.label" [nzValue]="option.value">
+                </nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item nz-row class="mb-2">
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="isPaid">Paid</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+            <label nz-checkbox formControlName="isPaid"></label>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="paidRoommate">Paid Roommates</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+            <nz-select formControlName="paidRoommate" id="paidRoommate" nzMode="tags" nzPlaceHolder="Please select">
+                <nz-option *ngFor="let option of availableRoommate" [nzLabel]="option.label" [nzValue]="option.value">
+                </nz-option>
+            </nz-select>
         </nz-form-control>
     </nz-form-item>
 
