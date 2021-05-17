@@ -15,14 +15,19 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { BillFormComponent } from './bill/bill-form/bill-form.component';
 import { RoommateFormComponent } from './roommate/roommate-form/roommate-form.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 
 @NgModule({
-  declarations: [BillComponent, RoommateComponent, AdminComponent, BillFormComponent, RoommateFormComponent],
+  declarations: [BillComponent, RoommateComponent, AdminComponent, BillFormComponent, RoommateFormComponent, DashboardComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -37,6 +42,10 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzFormModule,
     NzInputModule,
     NzCheckboxModule,
+    NzSelectModule,
+    NzCardModule,
+    NzProgressModule,
+    NzInputNumberModule,
   ],
   providers: [
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'VND' },
